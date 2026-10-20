@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "fullscreen": true,
+        "fullscreen": false,
         "decorations": false,
         "title": "Artifact Master",
         "width": 1200,
