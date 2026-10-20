@@ -47,22 +47,23 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [charSearch, setCharSearch] = useState('');
 
+  // FIXED: Using Tauri v2 getCurrentWindow() API
   const handleMinimize = async () => {
     if (typeof window !== 'undefined' && window.__TAURI_INTERNALS__) {
-      const { appWindow } = await import('@tauri-apps/api/window');
-      appWindow.minimize();
+      const { getCurrentWindow } = await import('@tauri-apps/api/window');
+      getCurrentWindow().minimize();
     }
   };
   const handleMaximize = async () => {
     if (typeof window !== 'undefined' && window.__TAURI_INTERNALS__) {
-      const { appWindow } = await import('@tauri-apps/api/window');
-      appWindow.toggleMaximize();
+      const { getCurrentWindow } = await import('@tauri-apps/api/window');
+      getCurrentWindow().toggleMaximize();
     }
   };
   const handleClose = async () => {
     if (typeof window !== 'undefined' && window.__TAURI_INTERNALS__) {
-      const { appWindow } = await import('@tauri-apps/api/window');
-      appWindow.close();
+      const { getCurrentWindow } = await import('@tauri-apps/api/window');
+      getCurrentWindow().close();
     }
   };
 
@@ -85,8 +86,10 @@ export default function App() {
   if (!inventory) {
     return (
       <div className="min-h-screen bg-[#09090b] text-white flex flex-col items-center justify-center font-sans p-6 rounded-xl overflow-hidden relative">
-        <div data-tauri-drag-region className="absolute top-0 left-0 right-0 h-10 flex justify-end items-center px-4 bg-[#09090b] select-none">
-           <div className="flex gap-2 z-50">
+        {/* FIXED: Moved drag region only to the background spacer */}
+        <div className="absolute top-0 left-0 right-0 h-10 flex justify-end items-center px-4 bg-[#09090b] select-none">
+           <div data-tauri-drag-region className="absolute inset-0 z-0"></div>
+           <div className="flex gap-2 z-10">
               <button onClick={handleMinimize} className="w-6 h-6 rounded-full flex items-center justify-center hover:bg-white/10 text-gray-500 hover:text-white">−</button>
               <button onClick={handleMaximize} className="w-6 h-6 rounded-full flex items-center justify-center hover:bg-white/10 text-gray-500 hover:text-white">□</button>
               <button onClick={handleClose} className="w-6 h-6 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white text-gray-500">✕</button>
@@ -212,9 +215,11 @@ export default function App() {
   return (
     <div className="flex h-screen bg-[#09090b] text-white font-sans overflow-hidden flex-col">
       
-      <div data-tauri-drag-region className="h-10 bg-[#09090b] flex justify-between items-center px-4 border-b border-white/5 select-none shrink-0">
-        <div className="text-sm font-bold text-gray-500 tracking-wider">GENSHRINZMEOWS</div>
-        <div className="flex gap-2">
+      {/* FIXED: Moved drag region to a background layer, buttons are on top */}
+      <div className="h-10 bg-[#09090b] flex justify-between items-center px-4 border-b border-white/5 select-none shrink-0 relative">
+        <div data-tauri-drag-region className="absolute inset-0 z-0"></div>
+        <div className="text-sm font-bold text-gray-500 tracking-wider relative z-10 pointer-events-none">GENSHRINZMEOWS</div>
+        <div className="flex gap-2 relative z-10">
            <button onClick={handleMinimize} className="w-6 h-6 rounded-full flex items-center justify-center hover:bg-white/10 text-gray-500 hover:text-white transition-colors">−</button>
            <button onClick={handleMaximize} className="w-6 h-6 rounded-full flex items-center justify-center hover:bg-white/10 text-gray-500 hover:text-white transition-colors">□</button>
            <button onClick={handleClose} className="w-6 h-6 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white text-gray-500 transition-colors">✕</button>
