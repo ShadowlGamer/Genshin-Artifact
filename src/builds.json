@@ -226,7 +226,13 @@
       "critRate_",
       "critDMG_"
     ],
-    "subs": []
+    "subs": [
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "atk_",
+      "hp_"
+    ]
   },
   "Candace": {
     "sands": [
@@ -298,7 +304,10 @@
       "hp_",
       "healingBonus_"
     ],
-    "subs": []
+    "subs": [
+      "hp_",
+      "enerRech_"
+    ]
   },
   "Chiori": {
     "sands": [
@@ -463,7 +472,10 @@
       "hp_",
       "eleMas"
     ],
-    "subs": []
+    "subs": [
+      "hp_",
+      "eleMas"
+    ]
   },
   "Diluc": {
     "sands": [
@@ -533,7 +545,12 @@
       "critDMG_",
       "critRate_"
     ],
-    "subs": []
+    "subs": [
+      "atk_",
+      "eleMas",
+      "critRate_",
+      "critDMG_"
+    ]
   },
   "Emilie": {
     "sands": [
@@ -655,7 +672,13 @@
       "critRate_",
       "critDMG_"
     ],
-    "subs": []
+    "subs": [
+      "atk",
+      "critRate_",
+      "critDMG_",
+      "atk_",
+      "eleMas"
+    ]
   },
   "Furina": {
     "sands": [
@@ -708,7 +731,12 @@
       "critDMG_",
       "critRate_"
     ],
-    "subs": []
+    "subs": [
+      "atk_",
+      "critRate_",
+      "critDMG_",
+      "eleMas"
+    ]
   },
   "Gorou": {
     "sands": [
@@ -738,7 +766,12 @@
     "circlet": [
       "eleMas"
     ],
-    "subs": []
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "atk_",
+      "eleMas"
+    ]
   },
   "Hu Tao": {
     "sands": [
@@ -1060,7 +1093,11 @@
     "circlet": [
       "atk_"
     ],
-    "subs": []
+    "subs": [
+      "atk_",
+      "enerRech_",
+      "eleMas"
+    ]
   },
   "Lauma": {
     "sands": [
@@ -1209,7 +1246,12 @@
       "critRate_",
       "critDMG_"
     ],
-    "subs": []
+    "subs": [
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "eleMas"
+    ]
   },
   "Mika": {
     "sands": [
@@ -1314,7 +1356,12 @@
       "critRate_",
       "critDMG_"
     ],
-    "subs": []
+    "subs": [
+      "critDMG_",
+      "enerRech_",
+      "atk_",
+      "critRate_"
+    ]
   },
   "Nefer": {
     "sands": [
@@ -1415,7 +1462,12 @@
       "critRate_",
       "critDMG_"
     ],
-    "subs": []
+    "subs": [
+      "def_",
+      "critDMG_",
+      "critRate_",
+      "atk_"
+    ]
   },
   "Odette": {
     "sands": [
@@ -1447,7 +1499,12 @@
       "critDMG_",
       "critRate_"
     ],
-    "subs": []
+    "subs": [
+      "atk",
+      "critRate_",
+      "critDMG_",
+      "enerRech_"
+    ]
   },
   "Prune": {
     "sands": [
@@ -1496,7 +1553,13 @@
       "critRate_",
       "critDMG_"
     ],
-    "subs": []
+    "subs": [
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "enerRech_",
+      "eleMas"
+    ]
   },
   "Razor": {
     "sands": [
@@ -1528,7 +1591,13 @@
       "critRate_",
       "critDMG_"
     ],
-    "subs": []
+    "subs": [
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "eleMas",
+      "atk_"
+    ]
   },
   "Sandrone": {
     "sands": [
@@ -1579,7 +1648,11 @@
     "circlet": [
       "eleMas"
     ],
-    "subs": []
+    "subs": [
+      "enerRech_",
+      "atk_",
+      "eleMas"
+    ]
   },
   "Sethos": {
     "sands": [
@@ -1625,7 +1698,11 @@
     "circlet": [
       "eleMas"
     ],
-    "subs": []
+    "subs": [
+      "eleMas",
+      "hp_",
+      "enerRech_"
+    ]
   },
   "Sigewinne": {
     "sands": [
@@ -1638,7 +1715,10 @@
       "hp_",
       "healingBonus_"
     ],
-    "subs": []
+    "subs": [
+      "hp_",
+      "enerRech_"
+    ]
   },
   "Skirk": {
     "sands": [
@@ -1703,7 +1783,10 @@
       "hp_",
       "critRate_"
     ],
-    "subs": []
+    "subs": [
+      "eleMas",
+      "enerRech_"
+    ]
   },
   "Tighnari": {
     "sands": [
@@ -1905,7 +1988,13 @@
       "critRate_",
       "critDMG_"
     ],
-    "subs": []
+    "subs": [
+      "eleMas",
+      "enerRech_",
+      "atk_",
+      "critRate_",
+      "critDMG_"
+    ]
   },
   "Vesna": {
     "sands": [
@@ -2082,7 +2171,10 @@
       "critRate_",
       "critDMG_"
     ],
-    "subs": []
+    "subs": [
+      "def_",
+      "enerRech_"
+    ]
   },
   "Yae Miko": {
     "sands": [
@@ -2203,7 +2295,11 @@
     "circlet": [
       "hp_"
     ],
-    "subs": []
+    "subs": [
+      "hp_",
+      "hp",
+      "Energy Recharge"
+    ]
   },
   "Zibai": {
     "sands": [
