@@ -1,0 +1,381 @@
+window.addEventListener('DOMContentLoaded', function () {
+  var textContents = document.querySelectorAll('.c-commentItem__body p:not(.js-more)');
+  textContents.forEach(function (textContent) {
+    if (textContent.clientHeight >= 200) {
+      var moreButton = document.createElement('div');
+      moreButton.classList.add('more-button');
+      moreButton.innerHTML = '<span>See more.</span>';
+      moreButton.addEventListener('click', function () {
+        textContent.classList.add('is-open');
+        moreButton.remove();
+      });
+      textContent.classList.add('js-more');
+      textContent.appendChild(moreButton);
+    }
+  });
+});
+window.addEventListener('DOMContentLoaded', function () {
+  var comment_form_textarea = document.getElementById('js-comment-form-textarea');
+  var comment_form_counter = document.getElementById('js-form-word-counter');
+  if (!comment_form_textarea || !comment_form_counter) return;
+  var comment_length_limit = comment_form_textarea.maxLength;
+  var updateRemainingCommentLength = function updateRemainingCommentLength() {
+    clearTimeout(comment_form_textarea.dataset.timeout);
+    var comment_length = comment_form_textarea.value.length;
+    comment_form_textarea.dataset.timeout = setTimeout(function () {
+      var comment_remaining_count = comment_length_limit - comment_length;
+      comment_form_counter.textContent = comment_remaining_count < 0 ? "".concat(comment_remaining_count, "character over") : "Remaining:".concat(comment_remaining_count, "characters");
+      comment_form_counter.classList.toggle('over', comment_remaining_count < 0);
+    }, 300);
+  };
+  updateRemainingCommentLength();
+  comment_form_textarea.addEventListener('keyup', function () {
+    return updateRemainingCommentLength();
+  }, false);
+  comment_form_textarea.addEventListener('paste', function () {
+    return updateRemainingCommentLength();
+  }, false);
+});
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+/**
+ * ImageCompressor
+ * 画像をリサイズ・圧縮して300KB以下に最適化するクラス
+ *
+ * 使用例:
+ * const compressor = new ImageCompressor();
+ * const optimizedBlob = await compressor.optimizeImage(file);
+ */
+var ImageCompressor = /*#__PURE__*/function () {
+  function ImageCompressor() {
+    _classCallCheck(this, ImageCompressor);
+    this.MAX_SIZE_KB = 300;
+    this.MIN_QUALITY = 0.3;
+    this.MAX_DIMENSION = 1200;
+  }
+
+  /**
+   * FileまたはBlobを300KB以下に最適化
+   * @param {File|Blob} file - 最適化する画像FileまたはBlob
+   * @returns {Promise<Blob>} 最適化されたBlob
+   */
+  return _createClass(ImageCompressor, [{
+    key: "optimizeImage",
+    value: (function () {
+      var _optimizeImage = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(file) {
+        var canvas, optimizedCanvas;
+        return _regenerator().w(function (_context) {
+          while (1) switch (_context.n) {
+            case 0:
+              if (!(file.size <= this.MAX_SIZE_KB * 1024)) {
+                _context.n = 1;
+                break;
+              }
+              console.log("[ImageCompressor] Already optimized: ".concat((file.size / 1024).toFixed(2), "KB"));
+              return _context.a(2, file);
+            case 1:
+              _context.n = 2;
+              return this.fileToCanvas(file);
+            case 2:
+              canvas = _context.v;
+              // Step 2: リサイズが必要か確認
+              optimizedCanvas = this.resizeIfNeeded(canvas); // Step 3: 品質調整で300KB以下に圧縮
+              return _context.a(2, this.compressToTarget(optimizedCanvas));
+          }
+        }, _callee, this);
+      }));
+      function optimizeImage(_x) {
+        return _optimizeImage.apply(this, arguments);
+      }
+      return optimizeImage;
+    }()
+    /**
+     * FileまたはBlobをCanvasに変換
+     * @param {File|Blob} file - 変換するFileまたはBlob
+     * @returns {Promise<HTMLCanvasElement>} Canvas要素
+     */
+    )
+  }, {
+    key: "fileToCanvas",
+    value: function fileToCanvas(file) {
+      return new Promise(function (resolve, reject) {
+        var img = new Image();
+        var url = URL.createObjectURL(file);
+        img.onload = function () {
+          URL.revokeObjectURL(url);
+          var canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          var ctx = canvas.getContext('2d');
+          if (!ctx) {
+            reject(new Error('Failed to get canvas context'));
+            return;
+          }
+          ctx.drawImage(img, 0, 0);
+          resolve(canvas);
+        };
+        img.onerror = function () {
+          URL.revokeObjectURL(url);
+          reject(new Error('Failed to load image'));
+        };
+        img.src = url;
+      });
+    }
+
+    /**
+     * 必要に応じてCanvasをリサイズ
+     * @param {HTMLCanvasElement} canvas - リサイズするCanvas
+     * @returns {HTMLCanvasElement} リサイズされたCanvas（不要な場合は元のCanvas）
+     */
+  }, {
+    key: "resizeIfNeeded",
+    value: function resizeIfNeeded(canvas) {
+      var width = canvas.width,
+        height = canvas.height;
+      if (width <= this.MAX_DIMENSION && height <= this.MAX_DIMENSION) {
+        return canvas;
+      }
+      var scale = Math.min(this.MAX_DIMENSION / width, this.MAX_DIMENSION / height);
+      console.log("[ImageCompressor] Resizing: ".concat(width, "x").concat(height, " -> ").concat(Math.round(width * scale), "x").concat(Math.round(height * scale)));
+      return this.resizeCanvas(canvas, scale);
+    }
+
+    /**
+     * 品質を段階的に下げて300KB以下に圧縮
+     * @param {HTMLCanvasElement} canvas - 圧縮するCanvas
+     * @returns {Promise<Blob>} 圧縮されたBlob
+     */
+  }, {
+    key: "compressToTarget",
+    value: (function () {
+      var _compressToTarget = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(canvas) {
+        var quality, step, blob, currentBlob, currentSize, scale, resizedCanvas;
+        return _regenerator().w(function (_context2) {
+          while (1) switch (_context2.n) {
+            case 0:
+              quality = 0.9;
+              step = 0.05;
+            case 1:
+              if (!(quality >= this.MIN_QUALITY)) {
+                _context2.n = 4;
+                break;
+              }
+              _context2.n = 2;
+              return this.canvasToBlob(canvas, quality);
+            case 2:
+              blob = _context2.v;
+              if (!(blob.size <= this.MAX_SIZE_KB * 1024)) {
+                _context2.n = 3;
+                break;
+              }
+              console.log("[ImageCompressor] Optimized: ".concat((blob.size / 1024).toFixed(2), "KB at quality ").concat(quality.toFixed(2)));
+              return _context2.a(2, blob);
+            case 3:
+              quality -= step;
+              _context2.n = 1;
+              break;
+            case 4:
+              _context2.n = 5;
+              return this.canvasToBlob(canvas, this.MIN_QUALITY);
+            case 5:
+              currentBlob = _context2.v;
+              currentSize = currentBlob.size;
+              scale = Math.sqrt(this.MAX_SIZE_KB * 1024 / currentSize) * 0.9;
+              console.warn("[ImageCompressor] Further resizing needed, scale: ".concat(scale.toFixed(2)));
+              resizedCanvas = this.resizeCanvas(canvas, scale);
+              return _context2.a(2, this.canvasToBlob(resizedCanvas, this.MIN_QUALITY));
+          }
+        }, _callee2, this);
+      }));
+      function compressToTarget(_x2) {
+        return _compressToTarget.apply(this, arguments);
+      }
+      return compressToTarget;
+    }()
+    /**
+     * CanvasをBlobに変換
+     * @param {HTMLCanvasElement} canvas - 変換するCanvas
+     * @param {number} quality - JPEG品質 (0.0 - 1.0)
+     * @returns {Promise<Blob>} 変換されたBlob
+     */
+    )
+  }, {
+    key: "canvasToBlob",
+    value: function canvasToBlob(canvas, quality) {
+      return new Promise(function (resolve, reject) {
+        canvas.toBlob(function (blob) {
+          if (blob) {
+            resolve(blob);
+          } else {
+            reject(new Error('Failed to convert canvas to blob'));
+          }
+        }, 'image/jpeg', quality);
+      });
+    }
+
+    /**
+     * Canvasを指定した倍率でリサイズ
+     * @param {HTMLCanvasElement} canvas - リサイズするCanvas
+     * @param {number} scale - リサイズ倍率（0.0 - 1.0）
+     * @returns {HTMLCanvasElement} リサイズされた新しいCanvas
+     */
+  }, {
+    key: "resizeCanvas",
+    value: function resizeCanvas(canvas, scale) {
+      var newCanvas = document.createElement('canvas');
+      newCanvas.width = canvas.width * scale;
+      newCanvas.height = canvas.height * scale;
+      var ctx = newCanvas.getContext('2d');
+      if (!ctx) {
+        throw new Error('Failed to get canvas context');
+      }
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(canvas, 0, 0, newCanvas.width, newCanvas.height);
+      return newCanvas;
+    }
+  }]);
+}(); // グローバルに公開（レガシーコードからアクセスするため）
+window.ImageCompressor = ImageCompressor;
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+window.addEventListener('DOMContentLoaded', function () {
+  var input_upload_file = document.getElementById('js-comment-upload-file');
+  if (!input_upload_file) return;
+
+  // ImageCompressorのインスタンスを作成
+  var compressor = new ImageCompressor();
+
+  // 圧縮済みBlobを保持する変数（グローバルスコープで後から参照可能にする）
+  var compressedBlob = null;
+  input_upload_file.addEventListener('change', /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(e) {
+      var file, preview, uploadLabel, originalSize, compressedSize, reader, _t;
+      return _regenerator().w(function (_context) {
+        while (1) switch (_context.p = _context.n) {
+          case 0:
+            file = e.target.files[0];
+            if (file) {
+              _context.n = 1;
+              break;
+            }
+            return _context.a(2);
+          case 1:
+            if (file.type.includes('image')) {
+              _context.n = 2;
+              break;
+            }
+            alert(I18n.t('js.shared.archive_comments.image.error_not_image') || 'Please select an image file');
+            input_upload_file.value = '';
+            return _context.a(2);
+          case 2:
+            preview = document.getElementById('js-form-file-preview');
+            uploadLabel = input_upload_file.parentElement.getElementsByTagName('span')[0];
+            _context.p = 3;
+            // ローディング表示
+            preview.innerHTML = '<div class="c-loading">Compressing...</div>';
+            uploadLabel.innerText = 'Compressing...';
+
+            // 画像圧縮実行
+            originalSize = file.size;
+            _context.n = 4;
+            return compressor.optimizeImage(file);
+          case 4:
+            compressedBlob = _context.v;
+            compressedSize = compressedBlob.size; // プレビュー表示
+            reader = new FileReader();
+            reader.onload = function (e) {
+              var originalSizeKB = (originalSize / 1024).toFixed(2);
+              var compressedSizeKB = (compressedSize / 1024).toFixed(2);
+
+              // 圧縮前後のサイズ情報を表示
+              var sizeInfo = '';
+              if (originalSize > compressedSize) {
+                sizeInfo = "<div class=\"c-image-info\" style=\"font-size: 12px; color: #666; margin-top: 4px;\">".concat(originalSizeKB, "KB \u2192 ").concat(compressedSizeKB, "KB</div>");
+              }
+              preview.innerHTML = "\n          <img src=\"".concat(e.target.result, "\" title=\"").concat(file.name, "\">\n          ").concat(sizeInfo, "\n        ");
+              uploadLabel.innerText = I18n.t('js.shared.archive_comments.image.text_1') || 'Image selected';
+            };
+            reader.readAsDataURL(compressedBlob);
+            _context.n = 6;
+            break;
+          case 5:
+            _context.p = 5;
+            _t = _context.v;
+            console.error('Image compression failed:', _t);
+            alert(I18n.t('js.shared.archive_comments.image.error_compression_failed') || 'Image compression failed. Please select another image.');
+            input_upload_file.value = '';
+            preview.innerHTML = '';
+            uploadLabel.innerText = I18n.t('js.shared.archive_comments.image.text_upload') || 'Upload image';
+            compressedBlob = null;
+          case 6:
+            return _context.a(2);
+        }
+      }, _callee, null, [[3, 5]]);
+    }));
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+
+  // 圧縮済みBlobを取得する関数をグローバルに公開
+  window.getCompressedImageBlob = function () {
+    return compressedBlob;
+  };
+});
+window.addEventListener("DOMContentLoaded", function () {
+  window.report_comment = function (id, order_id) {
+    if (confirm(I18n.t('js.shared.archive_comments.report.text_1', {
+      order_id: order_id
+    }))) {
+      var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      fetchJSON("/api/archive_comments/".concat(id, "/report"), {
+        method: 'POST',
+        referrer: self.location.origin,
+        headers: {
+          'X-CSRF-Token': token
+        }
+      }).then(function (res) {
+        if (!res.ok) {
+          return alert(I18n.t('js.shared.archive_comments.report.alert_2'));
+        }
+        alert(I18n.t('js.shared.archive_comments.report.alert_1'));
+        return location.reload();
+      });
+    }
+  };
+  if (!window.forum) {
+    window.forum = {};
+  }
+  window.forum.reportComment = function (id, order_id) {
+    if (confirm(I18n.t('js.shared.forum_comment.text_3', {
+      order_id: order_id
+    }))) {
+      var forum_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      fetchJSON("/api/forum_comments/".concat(id, "/report"), {
+        method: 'POST',
+        referrer: self.location.origin,
+        headers: {
+          'X-CSRF-Token': forum_token
+        }
+      }).then(function (res) {
+        console.log(res);
+        if (!res.ok) {
+          return alert(I18n.t('js.shared.forum_comment.alert_2'));
+        }
+        alert(I18n.t('js.shared.forum_comment.text_4'));
+        return location.reload();
+      });
+    }
+  };
+});

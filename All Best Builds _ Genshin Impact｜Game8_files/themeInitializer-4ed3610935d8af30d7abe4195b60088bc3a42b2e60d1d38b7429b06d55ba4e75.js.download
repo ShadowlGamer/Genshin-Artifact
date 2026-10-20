@@ -1,0 +1,83 @@
+(function () {
+  // 定数定義
+  var THEME = Object.freeze({
+    KEY: 'user-theme-preference',
+    ATTRIBUTE: 'data-theme',
+    SYSTEM: 'system',
+    OPTIONS: Object.freeze({
+      DARK: 'dark',
+      LIGHT: 'light'
+    }),
+    ERROR_FALLBACK: 'light'
+  });
+
+  // テーマ適用
+  var applyTheme = function applyTheme(theme) {
+    // テーマの値をバリデーション
+    if (!Object.values(THEME.OPTIONS).includes(theme) && theme !== THEME.SYSTEM) {
+      theme = THEME.ERROR_FALLBACK;
+    }
+    requestAnimationFrame(function () {
+      var root = document.documentElement;
+      root.setAttribute(THEME.ATTRIBUTE, theme);
+      root.style.setProperty('--theme-transition', 'background-color 0.3s ease, color 0.3s ease');
+    });
+  };
+
+  // システムテーマの監視
+  var setupSystemThemeListener = function setupSystemThemeListener(mediaQuery, handler) {
+    var cleanup = function cleanup() {
+      mediaQuery.removeEventListener('change', handler);
+    };
+    mediaQuery.addEventListener('change', handler);
+    window.addEventListener('unload', cleanup, {
+      once: true
+    });
+    return cleanup;
+  };
+
+  // 初期化処理
+  var initializeTheme = function initializeTheme() {
+    var mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    var handleSystemThemeChange = function handleSystemThemeChange(e) {
+      if (localStorage.getItem(THEME.KEY) === THEME.SYSTEM) {
+        var systemTheme = e.matches ? THEME.OPTIONS.DARK : THEME.OPTIONS.LIGHT;
+        applyTheme(systemTheme);
+      }
+    };
+    try {
+      var savedTheme = localStorage.getItem(THEME.KEY);
+      var isValidTheme = savedTheme && (Object.values(THEME.OPTIONS).includes(savedTheme) || savedTheme === THEME.SYSTEM);
+      if (isValidTheme && savedTheme !== THEME.SYSTEM) {
+        applyTheme(savedTheme);
+      } else {
+        var systemTheme = mediaQuery.matches ? THEME.OPTIONS.DARK : THEME.OPTIONS.LIGHT;
+        applyTheme(systemTheme);
+
+        // システムテーマの監視をセットアップ
+        setupSystemThemeListener(mediaQuery, handleSystemThemeChange);
+      }
+    } catch (error) {
+      applyTheme(THEME.ERROR_FALLBACK);
+    }
+  };
+
+  // フェードイン処理
+  var setupFadeInHandler = function setupFadeInHandler() {
+    window.addEventListener('load', function () {
+      requestAnimationFrame(function () {
+        document.documentElement.classList.remove('theme-initializing');
+      });
+    }, {
+      once: true
+    });
+  };
+
+  // 初期化実行
+  try {
+    initializeTheme();
+    setupFadeInHandler();
+  } catch (error) {
+    applyTheme(THEME.ERROR_FALLBACK);
+  }
+})();

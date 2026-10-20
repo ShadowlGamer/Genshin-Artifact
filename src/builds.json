@@ -1,0 +1,2227 @@
+{
+  "Aino": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "eleMas"
+    ],
+    "circlet": [
+      "eleMas"
+    ],
+    "subs": [
+      "eleMas",
+      "critRate_",
+      "critDMG_",
+      "enerRech_"
+    ]
+  },
+  "Albedo": {
+    "sands": [
+      "def_"
+    ],
+    "goblet": [
+      "geo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "def_",
+      "critRate_",
+      "critDMG_"
+    ]
+  },
+  "Alhaitham": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "dendro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "eleMas",
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "atk_"
+    ]
+  },
+  "Aloy": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "cryo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "atk_",
+      "enerRech_",
+      "critDMG_",
+      "critRate_"
+    ]
+  },
+  "Alyosha": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "atk_",
+      "critRate_"
+    ],
+    "subs": [
+      "enerRech_",
+      "atk_",
+      "critRate_"
+    ]
+  },
+  "Amber": {
+    "sands": [
+      "atk_",
+      "eleMas"
+    ],
+    "goblet": [
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "atk_",
+      "critRate_",
+      "critDMG_",
+      "enerRech_"
+    ]
+  },
+  "Arlecchino": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "enerRech_",
+      "atk_"
+    ]
+  },
+  "Ayaka": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "cryo_dmg_"
+    ],
+    "circlet": [
+      "critDMG_"
+    ],
+    "subs": [
+      "critDMG_",
+      "enerRech_",
+      "atk_",
+      "critRate_"
+    ]
+  },
+  "Ayato": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "hydro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "atk_",
+      "hp_"
+    ]
+  },
+  "Baizhu": {
+    "sands": [
+      "hp_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "hp_"
+    ],
+    "subs": [
+      "enerRech_",
+      "hp_",
+      "hp"
+    ]
+  },
+  "Barbara": {
+    "sands": [
+      "hp_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "hp_",
+      "healingBonus_"
+    ],
+    "subs": [
+      "hp_"
+    ]
+  },
+  "Beidou": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "electro_dmg_",
+      "atk_",
+      "hp"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "atk_",
+      "critRate_",
+      "critDMG_",
+      "enerRech_"
+    ]
+  },
+  "Bennett": {
+    "sands": [
+      "enerRech_",
+      "atk_"
+    ],
+    "goblet": [
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": []
+  },
+  "Candace": {
+    "sands": [
+      "enerRech_",
+      "hp_"
+    ],
+    "goblet": [
+      "hp_",
+      "hydro_dmg_"
+    ],
+    "circlet": [
+      "hp_",
+      "critDMG_"
+    ],
+    "subs": [
+      "hp_",
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "eleMas"
+    ]
+  },
+  "Charlotte": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "atk_",
+      "cryo_dmg_"
+    ],
+    "circlet": [
+      "critDMG_"
+    ],
+    "subs": [
+      "critDMG_",
+      "atk_",
+      "enerRech_",
+      "critRate_"
+    ]
+  },
+  "Chasca": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": [
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "eleMas"
+    ]
+  },
+  "Chevreuse": {
+    "sands": [
+      "hp_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "hp_",
+      "healingBonus_"
+    ],
+    "subs": []
+  },
+  "Chiori": {
+    "sands": [
+      "def_",
+      "atk_"
+    ],
+    "goblet": [
+      "geo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "def_",
+      "atk_"
+    ]
+  },
+  "Chongyun": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "cryo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "atk_",
+      "eleMas"
+    ]
+  },
+  "Citlali": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "eleMas"
+    ],
+    "circlet": [
+      "eleMas"
+    ],
+    "subs": [
+      "eleMas",
+      "enerRech_"
+    ]
+  },
+  "Clorinde": {
+    "sands": [
+      "atk_",
+      "eleMas"
+    ],
+    "goblet": [
+      "electro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "enerRech_",
+      "atk_"
+    ]
+  },
+  "Collei": {
+    "sands": [
+      "atk_",
+      "eleMas"
+    ],
+    "goblet": [
+      "dendro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "atk_",
+      "eleMas"
+    ]
+  },
+  "Columbina": {
+    "sands": [
+      "hp_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "hp_",
+      "hydro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "hp_",
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "eleMas"
+    ]
+  },
+  "Cyno": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "electro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "eleMas",
+      "atk_"
+    ]
+  },
+  "Dahlia": {
+    "sands": [
+      "hp_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "hp_",
+      "critRate_"
+    ],
+    "subs": [
+      "enerRech_",
+      "hp_"
+    ]
+  },
+  "Dehya": {
+    "sands": [
+      "hp_",
+      "eleMas"
+    ],
+    "goblet": [
+      "hp_",
+      "eleMas"
+    ],
+    "circlet": [
+      "hp_",
+      "eleMas"
+    ],
+    "subs": []
+  },
+  "Diluc": {
+    "sands": [
+      "atk_",
+      "eleMas"
+    ],
+    "goblet": [
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "eleMas"
+    ]
+  },
+  "Diona": {
+    "sands": [
+      "enerRech_",
+      "hp_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "healingBonus_",
+      "hp_"
+    ],
+    "subs": [
+      "enerRech_",
+      "hp_",
+      "hp"
+    ]
+  },
+  "Dori": {
+    "sands": [
+      "enerRech_",
+      "hp_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "hp_",
+      "healingBonus_"
+    ],
+    "subs": [
+      "enerRech_",
+      "hp_",
+      "atk_",
+      "critRate_"
+    ]
+  },
+  "Durin": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "atk_",
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": []
+  },
+  "Emilie": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "dendro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "atk_",
+      "critRate_",
+      "critDMG_",
+      "enerRech_"
+    ]
+  },
+  "Escoffier": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "cryo_dmg_",
+      "atk_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "atk_",
+      "enerRech_"
+    ]
+  },
+  "Eula": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "physical_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critDMG_",
+      "critRate_",
+      "atk_"
+    ]
+  },
+  "Faruzan": {
+    "sands": [
+      "enerRech_"
+    ],
+    "goblet": [
+      "anemo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critRate_",
+      "critDMG_"
+    ]
+  },
+  "Fischl": {
+    "sands": [
+      "atk_",
+      "eleMas"
+    ],
+    "goblet": [
+      "electro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "atk"
+    ]
+  },
+  "Flins": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "atk",
+      "critRate_",
+      "critDMG_",
+      "enerRech_"
+    ]
+  },
+  "Freminet": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "physical_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": []
+  },
+  "Furina": {
+    "sands": [
+      "hp_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "hp_",
+      "hydro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critDMG_",
+      "critRate_",
+      "hp_",
+      "eleMas"
+    ]
+  },
+  "Gaming": {
+    "sands": [
+      "eleMas",
+      "atk_"
+    ],
+    "goblet": [
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critDMG_"
+    ],
+    "subs": [
+      "critDMG_",
+      "enerRech_",
+      "eleMas",
+      "critRate_",
+      "atk_"
+    ]
+  },
+  "Ganyu": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "cryo_dmg_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": []
+  },
+  "Gorou": {
+    "sands": [
+      "def_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "def",
+      "geo_dmg_"
+    ],
+    "circlet": [
+      "def_"
+    ],
+    "subs": [
+      "def_",
+      "enerRech_",
+      "critRate_"
+    ]
+  },
+  "Heizou": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "eleMas"
+    ],
+    "circlet": [
+      "eleMas"
+    ],
+    "subs": []
+  },
+  "Hu Tao": {
+    "sands": [
+      "hp_"
+    ],
+    "goblet": [
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "hp_",
+      "eleMas"
+    ]
+  },
+  "Iansan": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "atk_"
+    ],
+    "subs": [
+      "enerRech_",
+      "atk_"
+    ]
+  },
+  "Ifa": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "eleMas"
+    ],
+    "circlet": [
+      "eleMas"
+    ],
+    "subs": [
+      "eleMas",
+      "enerRech_"
+    ]
+  },
+  "Illuga": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "eleMas"
+    ],
+    "circlet": [
+      "eleMas"
+    ],
+    "subs": [
+      "eleMas",
+      "enerRech_",
+      "def_"
+    ]
+  },
+  "Ineffa": {
+    "sands": [
+      "atk_",
+      "eleMas"
+    ],
+    "goblet": [
+      "atk_",
+      "eleMas"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "atk_",
+      "eleMas",
+      "enerRech_"
+    ]
+  },
+  "Itto": {
+    "sands": [
+      "def_"
+    ],
+    "goblet": [
+      "geo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "def_",
+      "critDMG_",
+      "critRate_",
+      "enerRech_"
+    ]
+  },
+  "Jahoda": {
+    "sands": [
+      "enerRech_",
+      "atk_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "atk_",
+      "critRate_"
+    ],
+    "subs": [
+      "enerRech_",
+      "atk",
+      "critRate_",
+      "critDMG_",
+      "eleMas"
+    ]
+  },
+  "Jean": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "anemo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "healingBonus_"
+    ],
+    "subs": [
+      "atk_",
+      "enerRech_",
+      "critRate_",
+      "critDMG_"
+    ]
+  },
+  "Kachina": {
+    "sands": [
+      "def_"
+    ],
+    "goblet": [
+      "geo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critDMG_",
+      "critRate_",
+      "def_",
+      "enerRech_"
+    ]
+  },
+  "Kaeya": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "cryo_dmg_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": [
+      "atk_",
+      "critDMG_",
+      "critRate_"
+    ]
+  },
+  "Kaveh": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "eleMas"
+    ],
+    "circlet": [
+      "eleMas"
+    ],
+    "subs": [
+      "enerRech_",
+      "eleMas",
+      "critRate_",
+      "critDMG_",
+      "atk_"
+    ]
+  },
+  "Kazuha": {
+    "sands": [
+      "eleMas",
+      "atk_"
+    ],
+    "goblet": [
+      "eleMas",
+      "anemo_dmg_"
+    ],
+    "circlet": [
+      "eleMas",
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "eleMas",
+      "enerRech_",
+      "critDMG_",
+      "critRate_",
+      "atk_"
+    ]
+  },
+  "Keqing": {
+    "sands": [
+      "atk_",
+      "eleMas"
+    ],
+    "goblet": [
+      "electro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "atk_",
+      "eleMas"
+    ]
+  },
+  "Kinich": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "dendro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "enerRech_",
+      "eleMas"
+    ]
+  },
+  "Kirara": {
+    "sands": [
+      "hp_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "hp_"
+    ],
+    "subs": [
+      "hp_",
+      "hp",
+      "enerRech_"
+    ]
+  },
+  "Klee": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "eleMas"
+    ]
+  },
+  "Kokomi": {
+    "sands": [
+      "hp_"
+    ],
+    "goblet": [
+      "hydro_dmg_"
+    ],
+    "circlet": [
+      "healingBonus_",
+      "hp_"
+    ],
+    "subs": [
+      "hp_",
+      "enerRech_",
+      "eleMas"
+    ]
+  },
+  "Lan Yan": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "atk_"
+    ],
+    "subs": []
+  },
+  "Lauma": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "eleMas"
+    ],
+    "circlet": [
+      "eleMas",
+      "critRate_"
+    ],
+    "subs": [
+      "eleMas",
+      "critRate_",
+      "critDMG_",
+      "enerRech_"
+    ]
+  },
+  "Layla": {
+    "sands": [
+      "hp_"
+    ],
+    "goblet": [
+      "hp_",
+      "cryo_dmg_"
+    ],
+    "circlet": [
+      "hp_",
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "hp_",
+      "critRate_",
+      "critDMG_",
+      "enerRech_"
+    ]
+  },
+  "Linnea": {
+    "sands": [
+      "def_"
+    ],
+    "goblet": [
+      "def_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "def_",
+      "eleMas",
+      "enerRech_"
+    ]
+  },
+  "Lisa": {
+    "sands": [
+      "atk_",
+      "eleMas"
+    ],
+    "goblet": [
+      "electro_dmg_",
+      "eleMas"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_",
+      "eleMas"
+    ],
+    "subs": [
+      "enerRech_",
+      "eleMas",
+      "critRate_",
+      "critDMG_"
+    ]
+  },
+  "Lohen": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "cryo_dmg_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": [
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "enerRech_"
+    ]
+  },
+  "Lynette": {
+    "sands": [
+      "eleMas",
+      "enerRech_"
+    ],
+    "goblet": [
+      "eleMas",
+      "anemo_dmg_"
+    ],
+    "circlet": [
+      "eleMas",
+      "critRate_"
+    ],
+    "subs": [
+      "eleMas",
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "atk_",
+      "hp_"
+    ]
+  },
+  "Lyney": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critDMG_"
+    ],
+    "subs": [
+      "critDMG_",
+      "enerRech_",
+      "critRate_",
+      "atk_"
+    ]
+  },
+  "Mavuika": {
+    "sands": [
+      "atk_",
+      "eleMas"
+    ],
+    "goblet": [
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": []
+  },
+  "Mika": {
+    "sands": [
+      "enerRech_",
+      "hp_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "hp_",
+      "critRate_"
+    ],
+    "subs": [
+      "enerRech_",
+      "hp_",
+      "critRate_"
+    ]
+  },
+  "Mizuki": {
+    "sands": [
+      "eleMas",
+      "enerRech_"
+    ],
+    "goblet": [
+      "eleMas"
+    ],
+    "circlet": [
+      "eleMas"
+    ],
+    "subs": [
+      "eleMas",
+      "enerRech_"
+    ]
+  },
+  "Mona": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "hydro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critDMG_",
+      "critRate_",
+      "atk_"
+    ]
+  },
+  "Mualani": {
+    "sands": [
+      "hp_",
+      "eleMas"
+    ],
+    "goblet": [
+      "hydro_dmg_",
+      "hp_"
+    ],
+    "circlet": [
+      "critDMG_"
+    ],
+    "subs": [
+      "critDMG_",
+      "hp_",
+      "eleMas",
+      "critRate_",
+      "enerRech_"
+    ]
+  },
+  "Nahida": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "eleMas",
+      "dendro_dmg_"
+    ],
+    "circlet": [
+      "eleMas",
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "eleMas",
+      "critRate_",
+      "critDMG_",
+      "enerRech_"
+    ]
+  },
+  "Navia": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "geo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": []
+  },
+  "Nefer": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "eleMas"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": [
+      "eleMas",
+      "critRate_",
+      "critDMG_"
+    ]
+  },
+  "Neuvillette": {
+    "sands": [
+      "hp_"
+    ],
+    "goblet": [
+      "hydro_dmg_",
+      "hp_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "hp_",
+      "critRate_",
+      "critDMG_",
+      "enerRech_",
+      "eleMas"
+    ]
+  },
+  "Nicole": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "atk_"
+    ],
+    "subs": [
+      "atk_",
+      "enerRech_"
+    ]
+  },
+  "Nilou": {
+    "sands": [
+      "hp_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "hp_"
+    ],
+    "subs": [
+      "hp_",
+      "enerRech_",
+      "hp",
+      "eleMas"
+    ]
+  },
+  "Ningguang": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "geo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "atk_"
+    ]
+  },
+  "Noelle": {
+    "sands": [
+      "def_"
+    ],
+    "goblet": [
+      "geo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": []
+  },
+  "Odette": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "eleMas"
+    ]
+  },
+  "Ororon": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "electro_dmg_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": []
+  },
+  "Prune": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "atk_"
+    ],
+    "subs": [
+      "atk_",
+      "enerRech_"
+    ]
+  },
+  "Qiqi": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "atk_",
+      "healingBonus_"
+    ],
+    "subs": [
+      "atk_",
+      "atk",
+      "enerRech_"
+    ]
+  },
+  "Raiden": {
+    "sands": [
+      "enerRech_",
+      "atk_"
+    ],
+    "goblet": [
+      "atk_",
+      "electro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": []
+  },
+  "Razor": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "electro_dmg_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": [
+      "atk_",
+      "critRate_",
+      "critDMG_",
+      "enerRech_"
+    ]
+  },
+  "Rosaria": {
+    "sands": [
+      "eleMas",
+      "atk_"
+    ],
+    "goblet": [
+      "cryo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": []
+  },
+  "Sandrone": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "eleMas"
+    ]
+  },
+  "Sara": {
+    "sands": [
+      "enerRech_",
+      "atk_"
+    ],
+    "goblet": [
+      "electro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "atk_",
+      "enerRech_",
+      "critRate_",
+      "critDMG_"
+    ]
+  },
+  "Sayu": {
+    "sands": [
+      "enerRech_",
+      "eleMas"
+    ],
+    "goblet": [
+      "eleMas"
+    ],
+    "circlet": [
+      "eleMas"
+    ],
+    "subs": []
+  },
+  "Sethos": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "electro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "enerRech_",
+      "eleMas"
+    ]
+  },
+  "Shenhe": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "atk_"
+    ],
+    "subs": [
+      "atk_",
+      "enerRech_"
+    ]
+  },
+  "Shinobu": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "eleMas"
+    ],
+    "circlet": [
+      "eleMas"
+    ],
+    "subs": []
+  },
+  "Sigewinne": {
+    "sands": [
+      "hp_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "hp_",
+      "healingBonus_"
+    ],
+    "subs": []
+  },
+  "Skirk": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "cryo_dmg_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": [
+      "atk_",
+      "critRate_",
+      "critDMG_"
+    ]
+  },
+  "Sucrose": {
+    "sands": [
+      "eleMas"
+    ],
+    "goblet": [
+      "eleMas"
+    ],
+    "circlet": [
+      "eleMas"
+    ],
+    "subs": [
+      "enerRech_",
+      "eleMas",
+      "critRate_",
+      "critDMG_"
+    ]
+  },
+  "Tartaglia": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "hydro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "atk_",
+      "critRate_",
+      "critDMG_",
+      "eleMas"
+    ]
+  },
+  "Thoma": {
+    "sands": [
+      "enerRech_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "hp_",
+      "critRate_"
+    ],
+    "subs": []
+  },
+  "Tighnari": {
+    "sands": [
+      "atk_",
+      "eleMas"
+    ],
+    "goblet": [
+      "dendro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "atk_",
+      "eleMas"
+    ]
+  },
+  "Traveler (Anemo)": {
+    "sands": [
+      "enerRech_"
+    ],
+    "goblet": [
+      "anemo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critRate_"
+    ]
+  },
+  "Traveler (Cryo)": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": [
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "enerRech_"
+    ]
+  },
+  "Traveler (Dendro)": {
+    "sands": [
+      "enerRech_",
+      "eleMas"
+    ],
+    "goblet": [
+      "dendro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "eleMas",
+      "critRate_",
+      "critDMG_"
+    ]
+  },
+  "Traveler (Electro)": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "electro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "atk_",
+      "critDMG_",
+      "critRate_",
+      "enerRech_"
+    ]
+  },
+  "Traveler (Geo)": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "geo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "atk_"
+    ]
+  },
+  "Traveler (Hydro)": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "hydro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "eleMas",
+      "enerRech_",
+      "atk_",
+      "hp_"
+    ]
+  },
+  "Traveler (Pyro)": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "pyro_dmg_",
+      "atk_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "atk_"
+    ]
+  },
+  "Varesa": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "electro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "enerRech_",
+      "eleMas"
+    ]
+  },
+  "Varka": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "atk_",
+      "enerRech_",
+      "eleMas"
+    ]
+  },
+  "Venti": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "anemo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": []
+  },
+  "Vesna": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "eleMas"
+    ]
+  },
+  "Vodyanitsa": {
+    "sands": [
+      "hp_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "hp_"
+    ],
+    "subs": [
+      "hp_",
+      "enerRech_"
+    ]
+  },
+  "Wanderer": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "anemo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "enerRech_",
+      "atk_"
+    ]
+  },
+  "Wriothesley": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "cryo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "atk_",
+      "critRate_",
+      "critDMG_",
+      "enerRech_",
+      "eleMas"
+    ]
+  },
+  "Xiangling": {
+    "sands": [
+      "eleMas",
+      "atk_"
+    ],
+    "goblet": [
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "eleMas"
+    ]
+  },
+  "Xianyun": {
+    "sands": [
+      "enerRech_",
+      "atk_"
+    ],
+    "goblet": [
+      "atk_"
+    ],
+    "circlet": [
+      "atk_",
+      "healingBonus_"
+    ],
+    "subs": [
+      "enerRech_",
+      "atk_"
+    ]
+  },
+  "Xiao": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "anemo_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "atk_",
+      "enerRech_",
+      "critRate_",
+      "critDMG_"
+    ]
+  },
+  "Xilonen": {
+    "sands": [
+      "enerRech_"
+    ],
+    "goblet": [
+      "def_"
+    ],
+    "circlet": [
+      "healingBonus_",
+      "def_"
+    ],
+    "subs": [
+      "enerRech_",
+      "def_"
+    ]
+  },
+  "Xingqiu": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "hydro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critDMG_",
+      "critRate_",
+      "atk_",
+      "eleMas"
+    ]
+  },
+  "Xinyan": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "physical_dmg_",
+      "atk_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": []
+  },
+  "Yae Miko": {
+    "sands": [
+      "atk_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "electro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critRate_",
+      "critDMG_",
+      "atk_"
+    ]
+  },
+  "Yanfei": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "atk_",
+      "critDMG_",
+      "critRate_"
+    ]
+  },
+  "Yaoyao": {
+    "sands": [
+      "enerRech_",
+      "hp_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "critRate_",
+      "healingBonus_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critRate_",
+      "eleMas",
+      "hp_"
+    ]
+  },
+  "Yelan": {
+    "sands": [
+      "hp_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "hydro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "hp_",
+      "critRate_",
+      "critDMG_",
+      "enerRech_"
+    ]
+  },
+  "Yoimiya": {
+    "sands": [
+      "atk_"
+    ],
+    "goblet": [
+      "pyro_dmg_"
+    ],
+    "circlet": [
+      "critRate_",
+      "critDMG_"
+    ],
+    "subs": [
+      "enerRech_",
+      "critDMG_",
+      "atk_"
+    ]
+  },
+  "Yun Jin": {
+    "sands": [
+      "def_",
+      "enerRech_"
+    ],
+    "goblet": [
+      "def_"
+    ],
+    "circlet": [
+      "def_",
+      "critRate_"
+    ],
+    "subs": [
+      "def_",
+      "enerRech_",
+      "critRate_"
+    ]
+  },
+  "Zhongli": {
+    "sands": [
+      "hp_"
+    ],
+    "goblet": [
+      "hp_"
+    ],
+    "circlet": [
+      "hp_"
+    ],
+    "subs": []
+  },
+  "Zibai": {
+    "sands": [
+      "def_"
+    ],
+    "goblet": [
+      "def_"
+    ],
+    "circlet": [
+      "critDMG_",
+      "critRate_"
+    ],
+    "subs": [
+      "critRate_",
+      "critDMG_",
+      "def_",
+      "eleMas",
+      "enerRech_"
+    ]
+  }
+}

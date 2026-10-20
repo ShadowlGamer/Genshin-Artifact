@@ -1,0 +1,35 @@
+name: Build MSI Installer
+
+on:
+  push:
+    tags:
+      - 'v*' # This triggers the build when you push a version tag like 'v1.0.0'
+  workflow_dispatch: # This allows you to also run it manually from GitHub
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Tauri App
+        run: npx tauri build
+
+      - name: Upload MSI Installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-msi-installer
+          path: src-tauri/target/release/bundle/msi/*.msi

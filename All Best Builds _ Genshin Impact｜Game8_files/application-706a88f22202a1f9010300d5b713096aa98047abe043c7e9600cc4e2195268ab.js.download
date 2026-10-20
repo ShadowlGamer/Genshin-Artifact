@@ -1,0 +1,1135 @@
+window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('click', toggleCommentFav, false);
+  function toggleCommentFav(e) {
+    var target = e.target.closest('.js-fav-comment-trigger');
+    if (!target) return;
+    var active_class_name = 'is-active';
+    var _JSON$parse = JSON.parse(target.dataset.comment),
+      id = _JSON$parse.id,
+      is_user_present = _JSON$parse.is_user_present;
+    if (!is_user_present) {
+      return MicroModal.show('js-register-modal', {
+        disableScroll: true,
+        disableFocus: true,
+        awaitOpenAnimation: true,
+        awaitCloseAnimation: true
+      });
+    }
+    var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    fetchJSON("/api/archive_comments/".concat(id, "/favorite.json"), {
+      method: 'POST',
+      referrer: self.location.origin,
+      headers: {
+        'X-CSRF-Token': token
+      }
+    }).then(function (res) {
+      if (!res.ok) {
+        alert('コメントの保存に失敗しました');
+        return;
+      }
+      var _res$body = res.body,
+        is_favorite = _res$body.is_favorite,
+        is_first_comment = _res$body.is_first_comment,
+        comment = _res$body.comment;
+      var fav_icon = target.getElementsByClassName('js-comment-fav-icon')[0];
+      var fav_counter = target.getElementsByClassName('js-comment-fav-count')[0];
+      fav_icon.classList.toggle(active_class_name, is_favorite);
+      fav_counter.textContent = comment.favorite_count > 0 ? comment.favorite_count : '';
+      if (is_favorite && is_first_comment) {
+        if (window.confirm('コメントを保存しました。マイページから確認できます。マイページに移動しますか？')) {
+          return location.href = '/i/mypage';
+        }
+      }
+    });
+  }
+});
+window.addEventListener('DOMContentLoaded', function () {
+  var feedBackText = document.querySelector('.a-afterFeedback');
+  var badButton = document.querySelector('.a-feedback__badButton');
+  var feedBackContent = document.querySelector('.a-feedback');
+  var goodButton = document.querySelector('.a-feedback__goodButton');
+  if (badButton) {
+    badButton.addEventListener('click', function () {
+      feedBackText.style.display = 'block';
+      feedBackContent.style.display = 'none';
+    });
+  }
+  if (goodButton) {
+    goodButton.addEventListener('click', function () {
+      feedBackText.style.display = 'block';
+      feedBackContent.style.display = 'none';
+    });
+  }
+});
+// コメントソートフィルター機能
+'use strict';
+
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+var CommentSorter = /*#__PURE__*/function () {
+  function CommentSorter(archiveId) {
+    _classCallCheck(this, CommentSorter);
+    this.archiveId = archiveId;
+    this.currentSort = 'newest';
+
+    // DOM要素のキャッシュ
+    this.commentsListContainer = null;
+    this.commentsContainer = null;
+    this.sortSelect = null;
+
+    // 初期化制御
+    this.initRetryCount = 0;
+    this.maxRetries = 5;
+
+    // 設定値
+    this.CONFIG = {
+      MAX_COMMENTS_LIMIT: 1000,
+      DEFAULT_SORT: 'newest',
+      ALLOWED_SORT_OPTIONS: ['newest', 'top'],
+      DEFAULT_PAGE_SIZE: 20,
+      MAX_PAGE_SIZE: 100
+    };
+  }
+
+  // DOM要素を初期化時にキャッシュ
+  return _createClass(CommentSorter, [{
+    key: "initializeElements",
+    value: function initializeElements() {
+      this.commentsListContainer = document.querySelector('#comments_list');
+      this.commentsContainer = document.querySelector('#comments_list .c-container');
+      this.sortSelect = document.querySelector('[name="comment_sort"]');
+    }
+  }, {
+    key: "changeSort",
+    value: function () {
+      var _changeSort = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(sortType) {
+        var previousSort, _t;
+        return _regenerator().w(function (_context) {
+          while (1) switch (_context.p = _context.n) {
+            case 0:
+              if (!(this.currentSort === sortType)) {
+                _context.n = 1;
+                break;
+              }
+              return _context.a(2);
+            case 1:
+              if (this.CONFIG.ALLOWED_SORT_OPTIONS.includes(sortType)) {
+                _context.n = 2;
+                break;
+              }
+              return _context.a(2);
+            case 2:
+              if (this.commentsListContainer) {
+                _context.n = 3;
+                break;
+              }
+              this.initializeElements();
+              if (this.commentsListContainer) {
+                _context.n = 3;
+                break;
+              }
+              return _context.a(2);
+            case 3:
+              this.showLoading();
+
+              // 現在の状態を保存（エラー時の復旧用）
+              previousSort = this.currentSort;
+              _context.p = 4;
+              _context.n = 5;
+              return this.reloadWithSort(sortType);
+            case 5:
+              // 成功したら状態更新
+              this.currentSort = sortType;
+              _context.n = 7;
+              break;
+            case 6:
+              _context.p = 6;
+              _t = _context.v;
+              this.handleError(_t);
+              // エラー時は以前の状態に戻す
+              this.currentSort = previousSort;
+              if (this.sortSelect) {
+                this.sortSelect.value = previousSort;
+              }
+            case 7:
+              _context.p = 7;
+              this.hideLoading();
+              return _context.f(7);
+            case 8:
+              return _context.a(2);
+          }
+        }, _callee, this, [[4, 6, 7, 8]]);
+      }));
+      function changeSort(_x) {
+        return _changeSort.apply(this, arguments);
+      }
+      return changeSort;
+    }()
+  }, {
+    key: "reloadWithSort",
+    value: function () {
+      var _reloadWithSort = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(sortType) {
+        var url;
+        return _regenerator().w(function (_context2) {
+          while (1) switch (_context2.n) {
+            case 0:
+              url = new URL(window.location);
+              if (sortType === this.CONFIG.DEFAULT_SORT) {
+                // 新着順：パラメータを削除
+                url.searchParams.delete('sort_by');
+              } else {
+                // その他：sort_byパラメータを設定
+                url.searchParams.set('sort_by', sortType);
+              }
+
+              // ページも1に戻す
+              url.searchParams.delete('page');
+
+              // URLを更新
+              window.history.pushState({}, '', url.toString());
+
+              // Ajax でコメント表示を更新
+              _context2.n = 1;
+              return this.reloadCommentsWithSort(sortType);
+            case 1:
+              return _context2.a(2);
+          }
+        }, _callee2, this);
+      }));
+      function reloadWithSort(_x2) {
+        return _reloadWithSort.apply(this, arguments);
+      }
+      return reloadWithSort;
+    }()
+  }, {
+    key: "reloadToDefaultSort",
+    value: function () {
+      var _reloadToDefaultSort = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
+        var url;
+        return _regenerator().w(function (_context3) {
+          while (1) switch (_context3.n) {
+            case 0:
+              // 新着順：Ajax でソート更新
+              url = new URL(window.location);
+              url.searchParams.delete('sort_by');
+              url.searchParams.delete('page'); // ページも1に戻す
+
+              // URLを更新
+              window.history.pushState({}, '', url.toString());
+
+              // Ajax でコメント表示を更新
+              _context3.n = 1;
+              return this.reloadCommentsWithSort(this.CONFIG.DEFAULT_SORT);
+            case 1:
+              return _context3.a(2);
+          }
+        }, _callee3, this);
+      }));
+      function reloadToDefaultSort() {
+        return _reloadToDefaultSort.apply(this, arguments);
+      }
+      return reloadToDefaultSort;
+    }()
+  }, {
+    key: "reloadCommentsWithSort",
+    value: function () {
+      var _reloadCommentsWithSort = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(sortType) {
+        var resetToPage1,
+          targetPage,
+          sortedIds,
+          _args4 = arguments;
+        return _regenerator().w(function (_context4) {
+          while (1) switch (_context4.n) {
+            case 0:
+              resetToPage1 = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : true;
+              targetPage = this.determineTargetPage(resetToPage1);
+              _context4.n = 1;
+              return this.fetchSortedCommentIds(sortType, this.CONFIG.DEFAULT_PAGE_SIZE, targetPage);
+            case 1:
+              sortedIds = _context4.v;
+              _context4.n = 2;
+              return this.updateCommentsDisplay(sortedIds, sortType);
+            case 2:
+              this.updatePaginationState(resetToPage1, sortType);
+            case 3:
+              return _context4.a(2);
+          }
+        }, _callee4, this);
+      }));
+      function reloadCommentsWithSort(_x3) {
+        return _reloadCommentsWithSort.apply(this, arguments);
+      }
+      return reloadCommentsWithSort;
+    }()
+  }, {
+    key: "determineTargetPage",
+    value: function determineTargetPage(resetToPage1) {
+      if (resetToPage1) return 1;
+      var urlParams = new URLSearchParams(window.location.search);
+      return parseInt(urlParams.get('page') || '1');
+    }
+  }, {
+    key: "updateCommentsDisplay",
+    value: function () {
+      var _updateCommentsDisplay = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(sortedIds, sortType) {
+        var _this$categorizeComme, existingElements, missingIds, missingHtml;
+        return _regenerator().w(function (_context5) {
+          while (1) switch (_context5.n) {
+            case 0:
+              _this$categorizeComme = this.categorizeCommentElements(sortedIds), existingElements = _this$categorizeComme.existingElements, missingIds = _this$categorizeComme.missingIds;
+              _context5.n = 1;
+              return this.fetchMissingCommentsHtml(missingIds, sortType);
+            case 1:
+              missingHtml = _context5.v;
+              this.reorderCommentsWithMixed(sortedIds, existingElements, missingHtml);
+            case 2:
+              return _context5.a(2);
+          }
+        }, _callee5, this);
+      }));
+      function updateCommentsDisplay(_x4, _x5) {
+        return _updateCommentsDisplay.apply(this, arguments);
+      }
+      return updateCommentsDisplay;
+    }()
+  }, {
+    key: "updatePaginationState",
+    value: function updatePaginationState(resetToPage1, sortType) {
+      this.updatePaginationLinks(sortType);
+      if (resetToPage1) {
+        this.updateToPage1();
+      }
+    }
+  }, {
+    key: "fetchSortedCommentIds",
+    value: function () {
+      var _fetchSortedCommentIds = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(sortType, limit) {
+        var page,
+          params,
+          response,
+          data,
+          _args6 = arguments;
+        return _regenerator().w(function (_context6) {
+          while (1) switch (_context6.n) {
+            case 0:
+              page = _args6.length > 2 && _args6[2] !== undefined ? _args6[2] : 1;
+              params = new URLSearchParams({
+                sort_by: sortType,
+                page: page,
+                limit: limit
+              });
+              _context6.n = 1;
+              return fetch("/api/archives/".concat(this.archiveId, "/comments?").concat(params), {
+                method: 'GET',
+                headers: {
+                  'Accept': 'application/json',
+                  'X-Requested-With': 'XMLHttpRequest',
+                  'Cache-Control': 'no-cache'
+                }
+              });
+            case 1:
+              response = _context6.v;
+              if (response.ok) {
+                _context6.n = 2;
+                break;
+              }
+              throw new Error(this.getLocalizedErrorMessage(response.status, response.statusText));
+            case 2:
+              _context6.n = 3;
+              return response.json();
+            case 3:
+              data = _context6.v;
+              return _context6.a(2, data.comment_ids);
+          }
+        }, _callee6, this);
+      }));
+      function fetchSortedCommentIds(_x6, _x7) {
+        return _fetchSortedCommentIds.apply(this, arguments);
+      }
+      return fetchSortedCommentIds;
+    }()
+  }, {
+    key: "categorizeCommentElements",
+    value: function categorizeCommentElements(sortedIds) {
+      var existingElements = new Map();
+      var missingIds = [];
+      var container = this.commentsListContainer.querySelector('.c-container');
+      var currentElements = Array.from(container.children);
+
+      // 既存要素をマップ化
+      currentElements.forEach(function (element) {
+        var match = element.id.match(/anchor_comment_(\d+)/);
+        if (match) {
+          var commentId = parseInt(match[1]);
+          existingElements.set(commentId, element);
+        }
+      });
+
+      // 不足している要素のIDを特定
+      sortedIds.forEach(function (commentId) {
+        if (!existingElements.has(commentId)) {
+          missingIds.push(commentId);
+        }
+      });
+      return {
+        existingElements: existingElements,
+        missingIds: missingIds
+      };
+    }
+  }, {
+    key: "fetchMissingCommentsHtml",
+    value: function () {
+      var _fetchMissingCommentsHtml = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(missingIds, sortType) {
+        var params, response, html, parser, doc, elementsMap;
+        return _regenerator().w(function (_context7) {
+          while (1) switch (_context7.n) {
+            case 0:
+              if (!(missingIds.length === 0)) {
+                _context7.n = 1;
+                break;
+              }
+              return _context7.a(2, new Map());
+            case 1:
+              // 既存のHTMLエンドポイントから完全なページを取得
+              params = new URLSearchParams({
+                sort_by: sortType || 'newest',
+                page: 1,
+                per: this.CONFIG.DEFAULT_PAGE_SIZE
+              });
+              _context7.n = 2;
+              return fetch("/games/".concat(this.getGameDirectoryName(), "/archives/").concat(this.archiveId, "/comments?").concat(params), {
+                method: 'GET',
+                headers: {
+                  'Accept': 'text/html',
+                  'X-Requested-With': 'XMLHttpRequest',
+                  'Cache-Control': 'no-cache'
+                }
+              });
+            case 2:
+              response = _context7.v;
+              if (response.ok) {
+                _context7.n = 3;
+                break;
+              }
+              return _context7.a(2, new Map());
+            case 3:
+              _context7.n = 4;
+              return response.text();
+            case 4:
+              html = _context7.v;
+              parser = new DOMParser();
+              doc = parser.parseFromString(html, 'text/html');
+              elementsMap = new Map(); // 必要なコメント要素のみを抽出
+              missingIds.forEach(function (commentId) {
+                var element = doc.querySelector("#anchor_comment_".concat(commentId));
+                if (element) {
+                  elementsMap.set(commentId, element.cloneNode(true));
+                }
+              });
+              return _context7.a(2, elementsMap);
+          }
+        }, _callee7, this);
+      }));
+      function fetchMissingCommentsHtml(_x8, _x9) {
+        return _fetchMissingCommentsHtml.apply(this, arguments);
+      }
+      return fetchMissingCommentsHtml;
+    }()
+  }, {
+    key: "reorderCommentsWithMixed",
+    value: function reorderCommentsWithMixed(sortedIds, existingElements, missingElements) {
+      var container = this.commentsListContainer.querySelector('.c-container');
+      if (!container) return;
+
+      // コンテナクリア
+      container.innerHTML = '';
+
+      // ソート順に要素を配置
+      sortedIds.forEach(function (commentId) {
+        var element = existingElements.get(commentId) || missingElements.get(commentId);
+        if (element) {
+          container.appendChild(element);
+        }
+      });
+    }
+  }, {
+    key: "getGameDirectoryName",
+    value: function getGameDirectoryName() {
+      // URLから現在のゲームディレクトリ名を取得
+      var pathParts = window.location.pathname.split('/');
+      var gamesIndex = pathParts.indexOf('games');
+      return gamesIndex !== -1 && pathParts[gamesIndex + 1] ? pathParts[gamesIndex + 1] : '';
+    }
+  }, {
+    key: "updatePaginationLinks",
+    value: function updatePaginationLinks(sortType) {
+      var _this = this;
+      var pagination = document.querySelector('.c-pagination');
+      if (!pagination) return;
+      var currentSortType = sortType || this.currentSort;
+
+      // すべてのページボタンにsort_byパラメータを追加
+      var pageButtons = pagination.querySelectorAll('.c-pagination__btn');
+      pageButtons.forEach(function (btn) {
+        if (btn.href && btn.href !== '#') {
+          // 既に完全なURLの場合とそうでない場合の両方に対応
+          var url = btn.href.startsWith('http') ? new URL(btn.href) : new URL(btn.href, window.location.origin);
+          if (currentSortType === _this.CONFIG.DEFAULT_SORT) {
+            // 新着順の場合はsort_byパラメータを削除
+            url.searchParams.delete('sort_by');
+          } else {
+            url.searchParams.set('sort_by', currentSortType);
+          }
+          btn.href = url.toString();
+        }
+      });
+
+      // Nextボタンにもsort_byパラメータを追加（typo修正）
+      var nextBtn = pagination.querySelector('.c-pagegination__next_btn');
+      if (nextBtn && nextBtn.href) {
+        var url = nextBtn.href.startsWith('http') ? new URL(nextBtn.href) : new URL(nextBtn.href, window.location.origin);
+        if (currentSortType === this.CONFIG.DEFAULT_SORT) {
+          // 新着順の場合はsort_byパラメータを削除
+          url.searchParams.delete('sort_by');
+        } else {
+          url.searchParams.set('sort_by', currentSortType);
+        }
+        nextBtn.href = url.toString();
+      }
+    }
+  }, {
+    key: "updateToPage1",
+    value: function updateToPage1() {
+      // URLをページ1に更新
+      var url = new URL(window.location);
+      url.searchParams.delete('page'); // ページ1はパラメータなし
+      window.history.replaceState({}, '', url.toString());
+
+      // ページネーションを1ページ目の状態にリセット
+      this.resetPaginationToPage1();
+    }
+  }, {
+    key: "resetPaginationToPage1",
+    value: function resetPaginationToPage1() {
+      var pagination = document.querySelector('.c-pagination');
+      if (!pagination) {
+        return;
+      }
+
+      // 現在のページボタンのスタイルをリセット
+      var currentBtn = pagination.querySelector('.c-pagination__btn--current');
+      if (currentBtn) {
+        currentBtn.classList.remove('c-pagination__btn--current');
+      }
+
+      // すべてのページボタンを1ページ目ベースで更新
+      var pageButtons = pagination.querySelectorAll('.c-pagination__btn[href]');
+      var pageCounter = 1;
+      pageButtons.forEach(function (btn) {
+        if (btn.classList.contains('c-pagination__prev_btn') || btn.classList.contains('c-pagegination__next_btn')) {
+          return; // prev/nextボタンは後で個別処理
+        }
+        var url = new URL(btn.href.startsWith('http') ? btn.href : btn.href, window.location.origin);
+        if (pageCounter === 1) {
+          // 1ページ目はpageパラメータなし
+          url.searchParams.delete('page');
+          btn.classList.add('c-pagination__btn--current');
+          btn.href = '#'; // 現在ページは無効化
+        } else {
+          // 2ページ目以降
+          url.searchParams.set('page', pageCounter.toString());
+          btn.href = url.toString();
+        }
+        pageCounter++;
+      });
+
+      // Nextボタンを2ページ目に設定
+      var nextBtn = pagination.querySelector('.c-pagegination__next_btn');
+      if (nextBtn && nextBtn.href) {
+        var url = new URL(nextBtn.href.startsWith('http') ? nextBtn.href : nextBtn.href, window.location.origin);
+        url.searchParams.set('page', '2');
+        nextBtn.href = url.toString();
+      }
+
+      // Prevボタンを無効化（1ページ目なので）
+      var prevBtn = pagination.querySelector('.c-pagination__prev_btn');
+      if (prevBtn) {
+        prevBtn.href = '#';
+        prevBtn.style.opacity = '0.5';
+        prevBtn.style.pointerEvents = 'none';
+      }
+    }
+  }, {
+    key: "updateURL",
+    value: function updateURL(sortType) {
+      var url = new URL(window.location);
+      if (sortType === this.CONFIG.DEFAULT_SORT) {
+        url.searchParams.delete('sort_by'); // デフォルトは削除
+      } else {
+        url.searchParams.set('sort_by', sortType);
+      }
+      url.searchParams.delete('c_page'); // ソート変更時はページリセット
+      url.searchParams.delete('page'); // APIのページパラメータもリセット
+
+      window.history.replaceState({}, '', url.toString());
+    }
+  }, {
+    key: "updateSortSelect",
+    value: function updateSortSelect(sortType) {
+      if (this.sortSelect) {
+        this.sortSelect.value = sortType;
+      }
+    }
+  }, {
+    key: "showLoading",
+    value: function showLoading() {
+      var _this$commentsListCon;
+      (_this$commentsListCon = this.commentsListContainer) === null || _this$commentsListCon === void 0 || _this$commentsListCon.classList.add('loading');
+    }
+  }, {
+    key: "hideLoading",
+    value: function hideLoading() {
+      var _this$commentsListCon2;
+      (_this$commentsListCon2 = this.commentsListContainer) === null || _this$commentsListCon2 === void 0 || _this$commentsListCon2.classList.remove('loading');
+    }
+  }, {
+    key: "getLocalizedErrorMessage",
+    value: function getLocalizedErrorMessage(status) {
+      var statusText = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      var lang = document.documentElement.lang || 'en';
+      var statusMessages = {
+        404: {
+          en: 'Comments not found. The page may have been deleted.',
+          ja: 'コメントが見つかりません。ページが削除された可能性があります。'
+        },
+        500: {
+          en: 'Server error occurred. Please try again later.',
+          ja: 'サーバーエラーが発生しました。しばらくしてからもう一度お試しください。'
+        },
+        default: {
+          en: 'Failed to load comments. Please reload the page.',
+          ja: 'コメントの読み込みに失敗しました。ページを再読み込みしてください。'
+        }
+      };
+      var messageSet = statusMessages[status] || statusMessages.default;
+      var localizedMessage = messageSet[lang] || messageSet.en;
+      return "HTTP ".concat(status, ": ").concat(localizedMessage);
+    }
+  }, {
+    key: "handleError",
+    value: function handleError(error) {
+      console.error('Comment sort error:', error);
+
+      // エラーメッセージから詳細を抽出
+      var displayMessage = error.message;
+      if (error.message.startsWith('HTTP')) {
+        // すでに国際化済みのメッセージはそのまま使用
+        displayMessage = error.message.split(': ').slice(1).join(': ');
+      } else {
+        // その他のエラーは汎用メッセージ
+        displayMessage = this.getLocalizedErrorMessage(0).split(': ')[1];
+      }
+
+      // より良いUXのためのエラー表示
+      if (typeof window.showNotification === 'function') {
+        window.showNotification(displayMessage, 'error');
+      } else {
+        // フォールバックとしてのalert
+        alert(displayMessage);
+      }
+    }
+
+    // 初期化メソッド
+  }, {
+    key: "init",
+    value: function init() {
+      var _this2 = this;
+      var container = document.querySelector('[data-archive-id]');
+      if (!container) return null;
+
+      // DOM要素を初期化
+      this.initializeElements();
+
+      // DOM要素が見つからない場合は少し待ってリトライ（制限付き）
+      if ((!this.commentsListContainer || !this.sortSelect) && this.initRetryCount < this.maxRetries) {
+        this.initRetryCount++;
+        setTimeout(function () {
+          return _this2.init();
+        }, 100);
+        return this;
+      }
+
+      // リトライ制限に達した場合
+      if (this.initRetryCount >= this.maxRetries) {
+        return null;
+      }
+
+      // URLから初期ソート状態を復元
+      var urlParams = new URLSearchParams(window.location.search);
+      var currentSort = urlParams.get('sort_by') || this.CONFIG.DEFAULT_SORT;
+      this.currentSort = currentSort;
+
+      // ソートセレクトの初期値を設定
+      if (this.sortSelect) {
+        this.sortSelect.value = currentSort;
+
+        // onchangeイベントリスナーを追加（アロー関数使用）
+        this.sortSelect.addEventListener('change', function (e) {
+          _this2.changeSort(e.target.value);
+        });
+      }
+
+      // 初期表示がデフォルトでない場合はAjaxで取得
+      // DOMが完全に準備できた後に実行
+      if (currentSort !== this.CONFIG.DEFAULT_SORT) {
+        // 少し遅延させてDOMの準備を待つ
+        setTimeout(function () {
+          _this2.changeSort(currentSort);
+        }, 50);
+      }
+      return this;
+    }
+  }]);
+}(); // DOMContentLoadedで初期化
+document.addEventListener('DOMContentLoaded', function () {
+  var container = document.querySelector('[data-archive-id]');
+  if (container && container.dataset.archiveId) {
+    var commentSorter = new CommentSorter(container.dataset.archiveId);
+    commentSorter.init();
+  }
+});
+window.addEventListener("DOMContentLoaded", function () {
+  var formDummy = document.getElementById("js-commentFormDumy");
+  var formMain = document.getElementById("js-commentFormMain");
+  if (!formDummy || !formMain) return;
+  formDummy.addEventListener("click", function () {
+    formDummy.style.display = "none";
+    formMain.style.display = "block";
+    var textarea = document.getElementById("js-comment-form-textarea");
+    textarea.focus();
+  });
+});
+window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('click', function (e) {
+    var trigger = e.target.closest('.js-insert-anchor');
+    if (!trigger) return;
+    var responseNumber = trigger.dataset.responseNumber;
+    var form_area = document.getElementById('js-reply-target');
+    if (form_area) {
+      window.scrollTo({
+        left: 0,
+        top: form_area.offsetTop,
+        behavior: 'smooth'
+      });
+    }
+    var commentFormDumy = document.getElementById('js-commentFormDumy');
+    if (commentFormDumy) {
+      commentFormDumy.style.display = 'none';
+      document.getElementById('js-commentFormMain').style.display = 'block';
+    }
+    var comment_form_textarea = document.getElementById("js-comment-form-textarea");
+    if (!comment_form_textarea) return;
+    if (comment_form_textarea.value.includes(">>[".concat(responseNumber, "]"))) return;
+    if (comment_form_textarea.value.split("\n")[0].includes(">>[")) {
+      comment_form_textarea.value = ">>[".concat(responseNumber, "]\n").concat(comment_form_textarea.value);
+    } else {
+      comment_form_textarea.value = ">>[".concat(responseNumber, "] ").concat(comment_form_textarea.value);
+    }
+  });
+});
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+document.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('click', handleRatingClick, false);
+  function handleRatingClick(e) {
+    var goodBtn = e.target.closest('.c-commentItem__good');
+    var badBtn = e.target.closest('.c-commentItem__bad');
+    var target = goodBtn || badBtn;
+    if (!target) return;
+    e.preventDefault();
+    var commentData;
+    try {
+      commentData = JSON.parse(target.dataset.comment);
+    } catch (error) {
+      console.error('Invalid comment data:', error);
+      alert('Failed to load data. Please reload the page.');
+      return;
+    }
+    var _commentData = commentData,
+      id = _commentData.id,
+      is_user_present = _commentData.is_user_present;
+    var ratingType = goodBtn ? 'good' : 'bad';
+    var isActive = target.classList.contains('is-active');
+
+    // 未ログイン時は会員訴求モーダルを表示
+    if (!is_user_present) {
+      showRatingMembershipModal(ratingType);
+      return;
+    }
+
+    // ローディング状態設定
+    setLoadingState(target, true);
+
+    // API呼び出し
+    var token = document.querySelector('meta[name="csrf-token"]');
+    var tokenValue = token.getAttribute('content');
+    if (isActive) {
+      // 評価取り消し（DELETE）
+      deleteRating(id, ratingType, tokenValue).then(function (result) {
+        return updateUI(id, result);
+      }).catch(function (error) {
+        return handleError(error);
+      }).finally(function () {
+        return setLoadingState(target, false);
+      });
+    } else {
+      // 評価追加（POST）- 反対評価の削除は自動で行われる
+      createRating(id, ratingType, tokenValue).then(function (result) {
+        return updateUI(id, result);
+      }).catch(function (error) {
+        return handleError(error);
+      }).finally(function () {
+        return setLoadingState(target, false);
+      });
+    }
+  }
+  function showRatingMembershipModal(ratingType) {
+    var trackingValue = ratingType === 'good' ? 'good_rating_attempt' : 'bad_rating_attempt';
+    window.openMembershipModal('comment_rating_attempt',
+    // ctaPlacement
+    'user_registration_flow',
+    // trackNierKeyword
+    trackingValue,
+    // trackNierValue
+    function () {},
+    // onClose
+    'rating',
+    // contentType
+    true // allowGuest
+    );
+  }
+  function createRating(_x, _x2, _x3) {
+    return _createRating.apply(this, arguments);
+  }
+  function _createRating() {
+    _createRating = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(commentId, ratingType, token) {
+      var response, _response$body;
+      return _regenerator().w(function (_context) {
+        while (1) switch (_context.n) {
+          case 0:
+            _context.n = 1;
+            return fetchJSON("/api/archive_comments/".concat(commentId, "/").concat(ratingType), {
+              method: 'POST',
+              referrer: self.location.origin,
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': token
+              }
+            });
+          case 1:
+            response = _context.v;
+            if (!response.ok) {
+              _context.n = 2;
+              break;
+            }
+            return _context.a(2, response.body);
+          case 2:
+            throw new Error(((_response$body = response.body) === null || _response$body === void 0 ? void 0 : _response$body.error) || 'Failed to submit rating');
+          case 3:
+            return _context.a(2);
+        }
+      }, _callee);
+    }));
+    return _createRating.apply(this, arguments);
+  }
+  function deleteRating(_x4, _x5, _x6) {
+    return _deleteRating.apply(this, arguments);
+  }
+  function _deleteRating() {
+    _deleteRating = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(commentId, ratingType, token) {
+      var response, _response$body2;
+      return _regenerator().w(function (_context2) {
+        while (1) switch (_context2.n) {
+          case 0:
+            _context2.n = 1;
+            return fetchJSON("/api/archive_comments/".concat(commentId, "/").concat(ratingType), {
+              method: 'DELETE',
+              referrer: self.location.origin,
+              headers: {
+                'X-CSRF-Token': token
+              }
+            });
+          case 1:
+            response = _context2.v;
+            if (!response.ok) {
+              _context2.n = 2;
+              break;
+            }
+            return _context2.a(2, response.body);
+          case 2:
+            throw new Error(((_response$body2 = response.body) === null || _response$body2 === void 0 ? void 0 : _response$body2.error) || 'Failed to delete rating');
+          case 3:
+            return _context2.a(2);
+        }
+      }, _callee2);
+    }));
+    return _deleteRating.apply(this, arguments);
+  }
+  function updateUI(commentId, result) {
+    var commentContainer = document.querySelector("[data-comment-id=\"".concat(commentId, "\"]")).closest('.c-commentItem');
+    var goodBtn = commentContainer.querySelector('.c-commentItem__good');
+    var badBtn = commentContainer.querySelector('.c-commentItem__bad');
+    var goodCountElement = goodBtn.querySelector('span');
+
+    // ボタンの状態更新（トグル対応）
+    goodBtn.classList.toggle('is-active', result.user_rating === 'good');
+    badBtn.classList.toggle('is-active', result.user_rating === 'bad');
+
+    // Good数の更新（APIレスポンスから取得）
+    var goodCount = result.comment.good_count;
+    goodCountElement.textContent = goodCount > 0 ? goodCount : '0';
+
+    // Bad数は即時更新不要（管理者の確認用途のため、ページリロード時に最新値を表示）
+  }
+  function setLoadingState(button, isLoading) {
+    button.disabled = isLoading;
+    if (isLoading) {
+      button.classList.add('is-loading');
+    } else {
+      button.classList.remove('is-loading');
+    }
+  }
+  function handleError(error) {
+    console.error('Rating error:', error);
+
+    // エラーオブジェクトの構造を正しく処理
+    var errorCode = 'UNKNOWN_ERROR';
+    if (error && _typeof(error) === 'object') {
+      // Fetch APIのレスポンスエラーの場合
+      if (error.code) {
+        errorCode = error.code;
+      } else if (error.message && error.message.includes('Failed to')) {
+        // カスタムエラーメッセージから判定
+        errorCode = 'API_ERROR';
+      }
+    }
+    switch (errorCode) {
+      case 'RATE_LIMIT_EXCEEDED':
+        alert('You have reached the rating limit. Please wait a moment.');
+        return;
+      case 'BOT_DETECTED':
+        alert('Suspicious activity detected.');
+        return;
+      case 'VALIDATION_ERROR':
+      case 'PARAMETER_ERROR':
+        alert('Invalid data. Please reload the page.');
+        return;
+      case 'SYSTEM_ERROR':
+        alert('System error occurred. Please try again later.');
+        return;
+      default:
+        alert('Failed to submit rating. Please try again later.');
+    }
+  }
+});
+window.addEventListener('DOMContentLoaded', function () {
+  var reply_modal_content = document.getElementById('js-reply-modal-content');
+  window.addEventListener('click', function (e) {
+    var trigger = e.target.closest('.js-open-reply-modal');
+    if (!trigger) return;
+    var _JSON$parse = JSON.parse(trigger.dataset.anchor),
+      id = _JSON$parse.id,
+      response_number = _JSON$parse.response_number,
+      reply_num = _JSON$parse.reply_num;
+    reply_modal_content.innerHTML = '<img src="https://img.game8.jp/232031/4f607d548390ce95fb22a7b12408e510_2016-03-29.gif/thumb?1459236701">';
+    // eslint-disable-next-line no-undef
+    fetchJSON("/api/archive_comments/receiver_comment/".concat(response_number, "?archive_id=").concat(id, "&anchor_response_number=").concat(reply_num)).then(function (res) {
+      if (!res.ok) {
+        alert(I18n.t('js.shared.archive_comments.reply.alert_1'));
+        return;
+      }
+      clearReplyModalContent();
+      addComment(res.body);
+    });
+  }, false);
+  window.addEventListener('click', function (e) {
+    var trigger = e.target.closest('.js-open-child-comment-modal');
+    if (!trigger) return;
+    var id = trigger.dataset.comment;
+    reply_modal_content.innerHTML = '<img src="https://img.game8.jp/232031/4f607d548390ce95fb22a7b12408e510_2016-03-29.gif/thumb?1459236701">';
+    fetchJSON("/api/archive_comments/children_comments/".concat(id)).then(function (res) {
+      if (!res.ok) {
+        alert(I18n.t('js.shared.forum_comment.alert_1'));
+        return;
+      }
+      clearReplyModalContent();
+      addComment(res.body);
+    });
+  }, false);
+  function escapeHTML(text) {
+    return String(text).replace(/[&<>"']/g, function (c) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[c];
+    });
+  }
+  function addComment(comments) {
+    var ignore_user_ids = Cookies.get("ignore_user_ids") || "";
+    comments.forEach(function (comment) {
+      var comment_body = comment.body.replace(/((https?)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+))/, '<a href=\'$1\'>$1</a>');
+      comment_body += comment.image_url ? "<img src='".concat(escapeHTML(comment.image_url), "'>") : '';
+      if (ignore_user_ids.includes(comment.force_trip)) {
+        var comment_item = "\n          <div class=\"c-commentItem\">\n            <i class=\"fa fa-ban\">This comment has been blocked.</i>\n          </div>\n        ";
+        reply_modal_content.insertAdjacentHTML('beforeend', comment_item);
+      } else {
+        var _comment_item = "\n          <div class=\"c-commentItem\">\n            <div class='c-commentItem__header'>\n              <span class='c-commentItem__userName'></span>Writing of the\n            </div>\n            <div class=\"c-commentItem__body\">".concat(comment_body, "</div>\n          </div>\n        ");
+        reply_modal_content.insertAdjacentHTML('beforeend', _comment_item);
+        reply_modal_content.lastElementChild.querySelector('.c-commentItem__userName').textContent = "".concat(comment.response_number, " ").concat(comment.name);
+      }
+    });
+  }
+  function clearReplyModalContent() {
+    var reply_modal_content = document.getElementById('js-reply-modal-content');
+    reply_modal_content.innerHTML = '';
+  }
+});
+window.addEventListener('DOMContentLoaded', function () {
+  var comment_length_limit = 500;
+  var comment_form_textarea = document.getElementById('js-comment-form-textarea');
+  var comment_form_file = document.getElementById('js-comment-upload-file');
+  var comment_form_user_id = document.getElementById('js-comment-user-id');
+  var comment_form_official_flag = document.getElementById('js-comment-official-flag');
+  var comment_form_anonymous = document.getElementById('js-comment-name-anonymous');
+  var comment_btn = {
+    submit: document.getElementById('js-comment-post'),
+    uploading: document.getElementById('js-comment-uploading'),
+    success: document.getElementById('js-comment-success')
+  };
+  var specificProhibitedPhrases = ['Last Updated on', 'Last Update on'];
+  window.addEventListener('click', postComment, false);
+  function postComment(e) {
+    var target = e.target.closest('#js-comment-post');
+    if (!target) return;
+    var form_textarea_length = comment_form_textarea.value.length;
+    if (comment_length_limit < form_textarea_length) {
+      alert(I18n.t('js.shared.archive_comments.comment.alert_1'));
+      comment_form_textarea.focus();
+    } else if (form_textarea_length < 3) {
+      alert(I18n.t('js.shared.archive_comments.comment.alert_2'));
+      comment_form_textarea.focus();
+    } else if (includeProhibitedWord() || includeSpecificProhibitedPhrases()) {
+      alert(I18n.t('js.shared.archive_comments.comment.alert_4'));
+      comment_form_textarea.focus();
+    } else {
+      comment_btn.submit.style.display = 'none';
+      comment_btn.uploading.style.display = 'block';
+      var formData = new FormData();
+      // 画像が添付されていたら
+      // 圧縮済みBlobがあればそちらを使用、なければ元のファイルを使用
+      var compressedBlob = window.getCompressedImageBlob && window.getCompressedImageBlob();
+      if (compressedBlob) {
+        formData.append('archive_comment[upload_file]', compressedBlob, 'comment_image.jpg');
+      } else if (comment_form_file.files[0]) {
+        // フォールバック: 圧縮がない場合は元のファイルを使用（後方互換性のため）
+        formData.append('archive_comment[upload_file]', comment_form_file.files[0]);
+      }
+      // ログインしていて、名無しオプションがなければuser_idを送信
+      if (comment_form_user_id && comment_form_user_id.value && comment_form_anonymous && !comment_form_anonymous.checked) {
+        formData.append('archive_comment[user_id]', comment_form_user_id.value);
+      }
+      // 匿名投稿オプションがチェックされていれば送信
+      if (comment_form_anonymous && comment_form_anonymous.checked) {
+        formData.append('archive_comment[is_not_login_user]', '1');
+      }
+      // 公式としてコメントするオプションがあれば
+      if (comment_form_official_flag && comment_form_official_flag.checked) {
+        formData.append('archive_comment[official_user_id]', comment_form_official_flag.value);
+      }
+      formData.append('archive_comment[archive_id]', gon.archive_id);
+      formData.append('archive_comment[body]', comment_form_textarea.value);
+      var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      window.removeEventListener('click', postComment, false);
+      fetchJSON('/api/archive_comments', {
+        method: 'POST',
+        referrer: self.location.origin,
+        headers: {
+          'X-CSRF-Token': token
+        },
+        body: formData
+      }).then(function (res) {
+        if (res.ok) {
+          comment_btn.uploading.style.display = 'none';
+          comment_btn.success.style.display = 'display';
+
+          // 非ログイン時にメンバーシップモーダル表示フラグを設定
+          var isLoggedIn = comment_form_user_id && comment_form_user_id.value;
+          if (!isLoggedIn) {
+            sessionStorage.setItem('showMembershipModal', 'true');
+          }
+          window.location.reload();
+        } else {
+          var text = I18n.t('js.shared.archive_comments.comment.text_1');
+          if (res.status === 422) {
+            text = I18n.t('js.shared.archive_comments.comment.text_1');
+          } else if (res.status === 406) {
+            text = res.body && res.body.body && res.body.body[0] || text;
+          } else if (res.status === 403) {
+            text = I18n.t('js.shared.archive_comments.comment.text_2');
+          }
+          alert(text);
+          comment_btn.uploading.style.display = 'none';
+          comment_btn.submit.style.display = 'block';
+          window.addEventListener('click', postComment, false);
+        }
+      });
+    }
+  }
+  function includeProhibitedWord() {
+    var _gon = gon,
+      prohibited_words = _gon.prohibited_words;
+    return prohibited_words.some(function (word) {
+      return comment_form_textarea.value.includes(word);
+    });
+  }
+  function includeSpecificProhibitedPhrases() {
+    return specificProhibitedPhrases.some(function (phrase) {
+      return comment_form_textarea.value.toLowerCase().includes(phrase.toLowerCase());
+    });
+  }
+
+  // ページロード時にメンバーシップモーダル表示フラグをチェック
+  if (sessionStorage.getItem('showMembershipModal') === 'true') {
+    sessionStorage.removeItem('showMembershipModal');
+    if (typeof window.openMembershipModal === 'function') {
+      setTimeout(function () {
+        window.openMembershipModal('archive_comment_notification',
+        // ctaPlacement
+        'user_registration_flow',
+        // trackNierKeyword
+        'archive_comment_posted',
+        // trackNierValue
+        function () {},
+        // onClose (何もしない)
+        'notification',
+        // contentType
+        true // allowGuest
+        );
+      }, 1000);
+    }
+  }
+});
