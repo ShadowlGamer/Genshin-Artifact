@@ -10,6 +10,13 @@ const AVERAGE_ROLL = {
   healingBonus_: 5.0, physical_dmg_: 5.83
 };
 
+const SUBSTAT_WEIGHTS = {
+  critRate_: 1.0, critDMG_: 1.0, 
+  atk_: 0.75, hp_: 0.75, def_: 0.75, eleMas: 0.75, 
+  enerRech_: 0.60, 
+  atk: 0.15, hp: 0.15, def: 0.15
+};
+
 const formatName = (str) => {
   if (!str) return '';
   const mappings = {
@@ -33,6 +40,8 @@ const cleanNameForImage = (name) => {
   return mappedName.replace(/[^a-zA-Z0-9]/g, '');
 };
 
+const normalizeSetName = (s) => s ? s.replace(/[^a-zA-Z0-9]/g, '').toLowerCase() : '';
+
 const getCharIcon = (charName) => `/chars/${cleanNameForImage(charName)}.png`;
 const getArtifactIcon = (setName) => `/artifacts/${setName.replace(/[^a-zA-Z0-9]/g, '')}.png`;
 
@@ -47,7 +56,6 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [charSearch, setCharSearch] = useState('');
 
-  // FIXED: Using Tauri v2 getCurrentWindow() API
   const handleMinimize = async () => {
     if (typeof window !== 'undefined' && window.__TAURI_INTERNALS__) {
       const { getCurrentWindow } = await import('@tauri-apps/api/window');
@@ -86,7 +94,6 @@ export default function App() {
   if (!inventory) {
     return (
       <div className="min-h-screen bg-[#09090b] text-white flex flex-col items-center justify-center font-sans p-6 rounded-xl overflow-hidden relative">
-        {/* FIXED: Moved drag region only to the background spacer */}
         <div className="absolute top-0 left-0 right-0 h-10 flex justify-end items-center px-4 bg-[#09090b] select-none">
            <div data-tauri-drag-region className="absolute inset-0 z-0"></div>
            <div className="flex gap-2 z-10">
@@ -119,8 +126,26 @@ export default function App() {
   }
 
   const currentBuild = buildsData[selectedChar] || {
+    role: 'Unknown',
+    sets: [],
     sands: ['atk_'], goblet: ['atk_'], circlet: ['critRate_', 'critDMG_'], subs: ['critRate_', 'critDMG_', 'atk_']
   };
+
+  // --- NEW MATH SETUP ---
+  const charSubs = currentBuild.subs || [];
+  
+  // Dynamic max rolls: If a character wants 2 subs, a perfect artifact can only get ~5.5 useful rolls.
+  const maxUsefulRolls = charSubs.length <= 1 ? 3.5 : charSubs.length === 2 ? 5.5 : charSubs.length === 3 ? 7.0 : 8.5;
+  
+  // Calculate highest possible weight based on the character's specific priorities
+  let highestPossibleWeight = 0;
+  charSubs.forEach((subKey, idx) => {
+      let baseWeight = SUBSTAT_WEIGHTS[subKey] || 0.5;
+      let priorityMult = idx <= 1 ? 1.0 : idx === 2 ? 0.75 : 0.5;
+      let finalWeight = baseWeight * priorityMult;
+      if (finalWeight > highestPossibleWeight) highestPossibleWeight = finalWeight;
+  });
+  const maxWeightedRolls = highestPossibleWeight > 0 ? maxUsefulRolls * highestPossibleWeight : 1;
 
   let rankedArtifacts = { flower: [], feather: [], sands: [], goblet: [], circlet: [] };
   
@@ -149,31 +174,35 @@ export default function App() {
         if (sub.key === 'critRate_') critValue += sub.value * 2;
         if (sub.key === 'critDMG_') critValue += sub.value;
 
-        const priorityIndex = currentBuild.subs.indexOf(sub.key);
+        const priorityIndex = charSubs.indexOf(sub.key);
         if (priorityIndex !== -1) {
           let rolls = sub.value / (AVERAGE_ROLL[sub.key] || 1);
-          if (['atk', 'hp', 'def'].includes(sub.key)) rolls *= 0.15; 
           usefulRolls += rolls;
           
-          let weight = 0.25;
-          if (priorityIndex === 0 || priorityIndex === 1) weight = 1.0;
-          else if (priorityIndex === 2) weight = 0.75;
-          else if (priorityIndex === 3) weight = 0.50;
-
-          if (sub.key === 'enerRech_' && sub.value > 20) weight *= 0.2; 
+          let weight = SUBSTAT_WEIGHTS[sub.key] || 0.5;
+          if (priorityIndex > 2) weight *= 0.5; 
+          
           weightedRolls += rolls * weight;
         }
       });
 
       let score = 0;
-      if (mainStatIsGood) {
-        const baseScore = Math.min(70, (usefulRolls / 9) * 70);
-        const priorityScore = Math.min(30, (weightedRolls / 9) * 30);
-        let rawScore = baseScore + priorityScore;
-        if (mainStatRank === 2) rawScore *= 0.85; 
-        if (mainStatRank >= 3) rawScore *= 0.70;  
-        score = Math.round(rawScore);
+      
+      const baseScore = Math.min(70, (usefulRolls / maxUsefulRolls) * 70);
+      const priorityScore = Math.min(30, (weightedRolls / maxWeightedRolls) * 30);
+      
+      let rawScore = baseScore + priorityScore;
+
+      // Main Stat Penalties
+      if (!mainStatIsGood) {
+        rawScore *= 0.5; 
+      } else if (mainStatRank === 2) {
+        rawScore *= 0.90; 
       }
+
+      // REMOVED Set Bonus from Math
+
+      score = Math.round(Math.min(100, Math.max(0, rawScore)));
 
       const matchesSearch = art.setKey.toLowerCase().includes(searchQuery.toLowerCase());
       
@@ -198,6 +227,16 @@ export default function App() {
     });
   }
 
+  // SORT: Best Set tables stay on top
+  const sortedGroups = Object.entries(groupedArtifacts).sort(([setNameA], [setNameB]) => {
+    const isBestA = currentBuild.sets?.some(s => normalizeSetName(s) === normalizeSetName(setNameA));
+    const isBestB = currentBuild.sets?.some(s => normalizeSetName(s) === normalizeSetName(setNameB));
+    
+    if (isBestA && !isBestB) return -1;
+    if (!isBestA && isBestB) return 1;
+    return 0; 
+  });
+
   const filteredChars = Object.keys(buildsData).filter(c => c.toLowerCase().includes(charSearch.toLowerCase())).sort();
 
   const AvatarImage = ({ char, className }) => {
@@ -215,7 +254,6 @@ export default function App() {
   return (
     <div className="flex h-screen bg-[#09090b] text-white font-sans overflow-hidden flex-col">
       
-      {/* FIXED: Moved drag region to a background layer, buttons are on top */}
       <div className="h-10 bg-[#09090b] flex justify-between items-center px-4 border-b border-white/5 select-none shrink-0 relative">
         <div data-tauri-drag-region className="absolute inset-0 z-0"></div>
         <div className="text-sm font-bold text-gray-500 tracking-wider relative z-10 pointer-events-none">GENSHRINZMEOWS</div>
@@ -248,7 +286,6 @@ export default function App() {
 
         <div className="flex-1 overflow-y-auto custom-scrollbar relative">
           
-          {/* DASHBOARD TAB */}
           {currentTab === 'home' && (
             <div className="p-8 max-w-6xl mx-auto space-y-8">
               <header>
@@ -296,7 +333,6 @@ export default function App() {
             </div>
           )}
 
-          {/* ARTIFACT PLANNER TAB */}
           {currentTab === 'planner' && (
             <div className="p-8 max-w-7xl mx-auto">
               <div className="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
@@ -305,18 +341,35 @@ export default function App() {
                   <p className="text-gray-400">Find the best pieces in your inventory for your characters.</p>
                 </div>
                 
-                <button 
-                  onClick={() => setIsModalOpen(true)}
-                  className="flex items-center gap-3 bg-black hover:bg-white/10 border border-white/20 p-2 pr-6 rounded-xl transition-all shadow-lg group"
-                >
-                  <div className="w-10 h-10 rounded-lg overflow-hidden border border-purple-500/50">
-                    <AvatarImage char={selectedChar} className="w-full h-full" />
+                <div className="flex items-center gap-6">
+                  <div className="text-right hidden sm:flex flex-col items-end">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-sm font-black text-white">{selectedChar}</span>
+                      <span className="text-xs font-bold uppercase tracking-wider text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">
+                        {currentBuild.role || 'Unknown'}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-gray-400">
+                      <span>Best Sets:</span>
+                      {currentBuild.sets?.length > 0 ? currentBuild.sets.map(s => (
+                        <span key={s} className="font-bold text-purple-300">{s}</span>
+                      )) : <span className="italic">None</span>}
+                    </div>
                   </div>
-                  <div className="text-left">
-                    <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">Selected</p>
-                    <p className="text-md font-black text-white">{selectedChar}</p>
-                  </div>
-                </button>
+
+                  <button 
+                    onClick={() => setIsModalOpen(true)}
+                    className="flex items-center gap-3 bg-black hover:bg-white/10 border border-white/20 p-2 pr-6 rounded-xl transition-all shadow-lg group"
+                  >
+                    <div className="w-10 h-10 rounded-lg overflow-hidden border border-purple-500/50">
+                      <AvatarImage char={selectedChar} className="w-full h-full" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">Selected</p>
+                      <p className="text-md font-black text-white">{selectedChar}</p>
+                    </div>
+                  </button>
+                </div>
               </div>
 
               <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
@@ -342,14 +395,14 @@ export default function App() {
                 </div>
               </div>
 
-              {Object.keys(groupedArtifacts).length === 0 && (
+              {sortedGroups.length === 0 && (
                 <div className="text-center py-16 border-2 border-dashed border-white/10 rounded-2xl bg-[#121214]">
                   <p className="text-gray-400 text-lg">No artifacts found for this slot.</p>
                 </div>
               )}
 
               <div className="space-y-6">
-                {Object.entries(groupedArtifacts).map(([setName, arts]) => (
+                {sortedGroups.map(([setName, arts]) => (
                   <div key={setName} className="bg-[#121214] border border-white/10 rounded-xl overflow-hidden shadow-xl">
                     <div className="bg-black/40 px-5 py-3 border-b border-white/10 flex items-center gap-3">
                       <SetImage setName={setName} className="w-8 h-8" />
@@ -403,7 +456,7 @@ export default function App() {
                               <td className="p-3">
                                 <div className="flex flex-wrap gap-1.5">
                                   {art.substats.map((sub, i) => {
-                                    const isWanted = currentBuild.subs.includes(sub.key);
+                                    const isWanted = charSubs.includes(sub.key);
                                     const isPercent = sub.key.endsWith('_') || sub.key === 'eleMas';
                                     return (
                                       <span key={i} className={`text-[11px] px-1.5 py-0.5 rounded font-bold whitespace-nowrap transition-colors ${
